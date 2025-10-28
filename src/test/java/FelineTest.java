@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FelineTest {
 
-    private Feline feline; //создал объект для тестов
+    private Feline feline;
 
     @Before
     public void setUp() {  //метод создающий экземпляр Feline перед каждым тестом
@@ -51,7 +51,5 @@ public class FelineTest {
         int kittens = feline.getKittens(testValue);
         Assert.assertEquals(testValue, kittens);
     }
-
-
 }
 
