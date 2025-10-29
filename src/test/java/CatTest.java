@@ -31,12 +31,16 @@ public class CatTest {
     @Test
     public void testGetFoodSuccess() throws Exception{
         Mockito.when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals("Должен вернуться список еды хищника",List.of("Животные", "Птицы", "Рыба"),cat.getFood());
+        List<String> food=cat.getFood();
+        Assert.assertTrue("Список еды должен содержать: Животные, Птицы, Рыба", food.containsAll(List.of("Животные", "Птицы", "Рыба")));
+        Assert.assertEquals("В списке должно быть три элемента",3,food.size());
+        Mockito.verify(mockFeline).eatMeat();
     }
 
     @Test(expected = Exception.class)
     public void testGetFoodException()throws Exception{
         Mockito.when(mockFeline.eatMeat()).thenThrow(new Exception("Нет корма"));
         cat.getFood();
+        Mockito.verify(mockFeline).eatMeat();
     }
 }
