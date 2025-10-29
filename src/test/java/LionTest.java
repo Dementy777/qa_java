@@ -40,4 +40,9 @@ public class LionTest {
         // Проверяем, что метод getFood() вернёт правильный список еды
         assertEquals("Метод должен вернуть список еды хищника", List.of("Животные", "Птицы", "Рыба"), femaleLion.getFood());
     }
+
+    @Test(expected = Exception.class) //тест на исключение пола для львиных
+    public void testInvalidSex() throws Exception{
+        new Lion("Несамецнесамка",mockFeline);
+    }
 }
