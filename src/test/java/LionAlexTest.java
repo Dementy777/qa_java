@@ -19,10 +19,8 @@ public class LionAlexTest {
 
     private LionAlex lionAlex;
 
-    @Before  //перед каждым методом настраиваю заглушку
+    @Before  //исправил заглушку по замечанию
     public void setUp() throws Exception{
-        Mockito.when(mockFeline.getFood("Хищник"))
-                .thenReturn(Arrays.asList("Животные", "Птицы", "Рыба"));
         lionAlex=new LionAlex(mockFeline);
     }
 
@@ -49,6 +47,8 @@ public class LionAlexTest {
 
 @Test  //тест на соответствие списка корма
     public void testGetFood() throws Exception {
+    Mockito.when(mockFeline.getFood("Хищник"))
+            .thenReturn(Arrays.asList("Животные", "Птицы", "Рыба"));
     List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
     List<String> actualFood = lionAlex.getFood();
     Assert.assertEquals("Еда должна соответствовать львам", expectedFood, actualFood);

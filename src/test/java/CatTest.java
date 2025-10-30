@@ -28,12 +28,11 @@ public class CatTest {
         Assert.assertEquals(" метод должен вернуть \"Мяу\"","Мяу",cat.getSound());
     }
 
-    @Test
-    public void testGetFoodSuccess() throws Exception{
+    @Test //исправил тест по принципу один тест-один Assert
+    public void testGetFoodSuccess() throws Exception {
         Mockito.when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        List<String> food=cat.getFood();
-        Assert.assertTrue("Список еды должен содержать: Животные, Птицы, Рыба", food.containsAll(List.of("Животные", "Птицы", "Рыба")));
-        Assert.assertEquals("В списке должно быть три элемента",3,food.size());
+        List<String> food = cat.getFood();
+        Assert.assertEquals("Список еды должен быть: Животные, Птицы, Рыба", List.of("Животные", "Птицы", "Рыба"), food);
         Mockito.verify(mockFeline).eatMeat();
     }
 

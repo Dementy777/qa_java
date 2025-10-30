@@ -18,18 +18,41 @@ public class FelineTest {
     }
 
 
+
+    @Test  //разделил проверку на пять разных плюс проверка исключения
+    public void testEatMeat_ReturnsNonNullList() throws Exception {
+        List<String> foodList = feline.eatMeat();
+        Assert.assertNotNull(foodList);
+    }
+
     @Test
-    public void testEatMeat() { //тест для метода eatMeat()
-        try {
-            List<String> foodList = feline.eatMeat();
-            Assert.assertNotNull(foodList);
-            assertEquals(3, foodList.size());
-            Assert.assertTrue(foodList.contains("Животные"));
-            Assert.assertTrue(foodList.contains("Птицы"));
-            Assert.assertTrue(foodList.contains("Рыба"));
-        } catch (Exception e) {
-            Assert.fail("Не ожидалось исключение при вызове eatMeat()");
-        }
+    public void testEatMeat_ListHasSizeThree() throws Exception{
+        List<String> foodList = feline.eatMeat();
+        assertEquals(3, foodList.size());
+    }
+
+    @Test
+    public void testEatMeat_ContainsAnimals() throws Exception{
+        List<String> foodList = feline.eatMeat();
+        Assert.assertTrue(foodList.contains("Животные"));
+    }
+
+    @Test
+    public void testEatMeat_ContainsBirds() throws Exception{
+        List<String> foodList = feline.eatMeat();
+        Assert.assertTrue(foodList.contains("Птицы"));
+    }
+
+    @Test
+    public void testEatMeat_ContainsFish() throws Exception{
+        List<String> foodList = feline.eatMeat();
+        Assert.assertTrue(foodList.contains("Рыба"));
+    }
+
+    @Test
+    public void testEatMeat_NoExceptionThrown() throws Exception {
+        List<String> foodList = feline.eatMeat();
+        Assert.assertNotNull(foodList);
     }
 
     @Test
